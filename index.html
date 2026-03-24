@@ -629,6 +629,71 @@ nav.scrolled {
 .audit-note a { color: var(--gold); text-decoration: none; }
 .audit-note a:hover { text-decoration: underline; }
 
+/* ─── INTELLIGENCE SECTION ─── */
+.intelligence {
+  padding: 8rem 5rem;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.intelligence-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; align-items: end; margin-bottom: 5rem;
+}
+.intelligence-count {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7rem; font-weight: 300; line-height: 1;
+  color: var(--gold); opacity: 0.18; user-select: none;
+  pointer-events: none;
+}
+.intelligence-body { color: var(--white-dim); font-size: 0.92rem; line-height: 1.8; max-width: 480px; }
+.intelligence-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.agent-card {
+  background: var(--panel); border: 1px solid var(--border);
+  padding: 2.4rem 2rem; position: relative; overflow: hidden;
+  transition: border-color 0.35s, transform 0.35s;
+}
+.agent-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.35s;
+}
+.agent-card:hover { border-color: var(--border-gold); transform: translateY(-4px); }
+.agent-card:hover::before { opacity: 1; }
+.agent-card-icon {
+  font-size: 1.3rem; margin-bottom: 1.2rem;
+  display: block; position: relative; z-index: 1;
+}
+.agent-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem; font-weight: 600; color: var(--white);
+  margin-bottom: 0.5rem; position: relative; z-index: 1;
+}
+.agent-card-subtitle {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--gold); margin-bottom: 1.2rem; position: relative; z-index: 1;
+}
+.agent-card-list {
+  list-style: none; position: relative; z-index: 1;
+}
+.agent-card-list li {
+  font-size: 0.78rem; color: var(--white-dim); line-height: 1.7;
+  padding-left: 1rem; position: relative;
+}
+.agent-card-list li::before {
+  content: '—'; position: absolute; left: 0; color: var(--gold); opacity: 0.55;
+}
+.agent-card-tag {
+  display: inline-block; margin-top: 1.4rem;
+  font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mid); background: var(--surface);
+  padding: 0.3rem 0.7rem; border: 1px solid var(--border);
+  position: relative; z-index: 1;
+}
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--black); border-top: 1px solid var(--border);
@@ -661,6 +726,9 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
   .hero-stats { display: none; }
   .about-grid { grid-template-columns: 1fr; gap: 4rem; }
   .services-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .intelligence-grid { grid-template-columns: repeat(2, 1fr); }
+  .intelligence-intro { grid-template-columns: 1fr; gap: 1rem; }
+  .intelligence-count { font-size: 5rem; }
 }
 @media (max-width: 900px) {
   nav { padding: 1.2rem 2rem; }
@@ -672,6 +740,9 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
   footer { flex-direction: column; gap: 1.5rem; padding: 2.5rem 2rem; text-align: center; }
   .footer-links { flex-wrap: wrap; justify-content: center; }
   .cards-grid { grid-template-columns: 1fr; }
+  .intelligence-grid { grid-template-columns: 1fr; }
+  .intelligence-intro { grid-template-columns: 1fr; }
+  .intelligence { padding: 5rem 2rem; }
   .problem-grid { grid-template-columns: 1fr; border-left: none; }
   .problem-item { border-right: none; border-bottom: 1px solid var(--border); }
   .guarantee { grid-template-columns: 1fr; }
@@ -692,6 +763,7 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
     <li><a href="#audit">Audit</a></li>
   </ul>
   <a href="#audit" class="nav-audit"><span>Free Audit →</span></a>
@@ -906,6 +978,110 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
   </div>
 </section>
 
+<!-- INTELLIGENCE -->
+<section class="intelligence" id="intelligence">
+  <div class="intelligence-intro reveal">
+    <div>
+      <div class="label"><span class="label-line"></span> AI-Powered Operations</div>
+      <h2 class="section-h2">172 specialist agents.<br><em>One unified system</em><br>working for you.</h2>
+      <div class="intelligence-count">172</div>
+    </div>
+    <p class="intelligence-body">Behind every piece of content, every audit, and every sponsorship pitch sits a network of specialist AI agents — each trained for a single domain, coordinated by the NEXUS orchestration layer. Here's what that means for your brand.</p>
+  </div>
+
+  <div class="intelligence-grid">
+    <!-- Content Strategy -->
+    <div class="agent-card reveal">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Content Strategy</div>
+      <div class="agent-card-subtitle">Instagram · TikTok · Reels</div>
+      <ul class="agent-card-list">
+        <li>Writes viral hooks for fat loss, muscle, strength & women's fitness</li>
+        <li>Builds 30-day content calendars aligned to the algorithm</li>
+        <li>Audits your existing library and identifies content gaps</li>
+        <li>Maps content pillars and formats to your goals</li>
+        <li>Benchmarks save rate, share rate, and comment rate</li>
+      </ul>
+      <span class="agent-card-tag">content-strategy agent</span>
+    </div>
+
+    <!-- Account Growth -->
+    <div class="agent-card reveal d1">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Account Growth</div>
+      <div class="agent-card-subtitle">Followers · Reach · Algorithm</div>
+      <ul class="agent-card-list">
+        <li>Instagram algorithm deep-dives and engagement optimisation</li>
+        <li>TikTok viral video structure and trend-hijacking playbooks</li>
+        <li>Growth experiment design and A/B test tracking</li>
+        <li>Viral loop engineering and referral mechanic design</li>
+        <li>Hashtag strategy and audience targeting refinement</li>
+      </ul>
+      <span class="agent-card-tag">instagram-curator · tiktok-strategist · growth-hacker agents</span>
+    </div>
+
+    <!-- Audit & Analytics -->
+    <div class="agent-card reveal d2">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Audit & Analytics</div>
+      <div class="agent-card-subtitle">Reports · Metrics · Insights</div>
+      <ul class="agent-card-list">
+        <li>Full Instagram account audits — content mix, DM funnel, positioning</li>
+        <li>Monthly performance dashboards and KPI summaries</li>
+        <li>Engagement deep-dives: saves, shares, comments, reach</li>
+        <li>Competitor benchmarking and gap analysis</li>
+        <li>Actionable priority action plans from every report</li>
+      </ul>
+      <span class="agent-card-tag">coach-auditor · analytics-reporter agents</span>
+    </div>
+
+    <!-- Brand & Design -->
+    <div class="agent-card reveal">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Brand & Design</div>
+      <div class="agent-card-subtitle">Identity · Visuals · Storytelling</div>
+      <ul class="agent-card-list">
+        <li>Brand identity development and consistency enforcement</li>
+        <li>AI-generated image prompts for scroll-stopping visuals</li>
+        <li>Visual narrative strategy across all platforms</li>
+        <li>Inclusive and culturally resonant imagery direction</li>
+        <li>Athlete aesthetic and personal brand positioning</li>
+      </ul>
+      <span class="agent-card-tag">brand-guardian · image-prompt-engineer · visual-storyteller agents</span>
+    </div>
+
+    <!-- Sponsor Outreach -->
+    <div class="agent-card reveal d1">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Sponsor Outreach</div>
+      <div class="agent-card-subtitle">Brand Deals · Pitches · Partnerships</div>
+      <ul class="agent-card-list">
+        <li>Researches brands aligned to your niche and audience</li>
+        <li>Writes personalised pitch emails and outreach sequences</li>
+        <li>Creates professional athlete media kits and brand decks</li>
+        <li>Tracks outreach pipeline and follow-up cadence</li>
+        <li>Maps your ICP (ideal brand partner) and targets accordingly</li>
+      </ul>
+      <span class="agent-card-tag">sales-outbound-strategist · sales-proposal-strategist agents</span>
+    </div>
+
+    <!-- Paid Advertising -->
+    <div class="agent-card reveal d2">
+      <span class="agent-card-icon">✦</span>
+      <div class="agent-card-title">Paid Advertising</div>
+      <div class="agent-card-subtitle">Meta · Instagram · Social Ads</div>
+      <ul class="agent-card-list">
+        <li>Full-funnel Meta and Instagram ad campaign architecture</li>
+        <li>Audience segmentation: prospecting through retargeting</li>
+        <li>Ad creative strategy — copy, hooks, visual direction</li>
+        <li>Conversion tracking setup and attribution modeling</li>
+        <li>Budget allocation frameworks and performance reporting</li>
+      </ul>
+      <span class="agent-card-tag">paid-social-strategist · creative-strategist · tracking-specialist agents</span>
+    </div>
+  </div>
+</section>
+
 <!-- GUARANTEE -->
 <div class="guarantee reveal">
   <div class="guarantee-text">
@@ -944,6 +1120,7 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
     <li><a href="https://instagram.com/brute.media" target="_blank">Instagram</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#intelligence">Intelligence</a></li>
     <li><a href="#audit">Free Audit</a></li>
   </ul>
 </footer>

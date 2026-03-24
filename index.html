@@ -623,6 +623,11 @@ nav.scrolled {
 .audit-input-wrap button:hover::before { transform: scaleX(1); transform-origin: left; }
 .audit-input-wrap button span { position: relative; z-index: 1; }
 
+.audit-error {
+  display: none; max-width: 460px; margin: 0.75rem auto 0;
+  font-size: 0.8rem; color: #e05c5c; letter-spacing: 0.03em;
+  text-align: left; padding: 0 0.2rem;
+}
 .audit-note {
   margin-top: 1.5rem; font-size: 0.72rem; color: var(--mid); letter-spacing: 0.05em;
 }
@@ -1257,6 +1262,7 @@ footer p { font-size: 0.72rem; color: var(--mid); letter-spacing: 0.04em; }
       <input type="text" id="auditHandle" placeholder="Your handle  @..." autocomplete="off">
       <button type="button" id="auditBtn"><span>Request Audit</span></button>
     </div>
+    <p class="audit-error" id="auditError" role="alert" aria-live="polite"></p>
     <div class="success-msg" id="successMsg">
       ✦ &nbsp; Got it. Your audit will land within 24 hours.
     </div>
@@ -1351,17 +1357,73 @@ const statObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
 
 // ── Audit form
-document.getElementById('auditBtn').addEventListener('click', () => {
-  const val = document.getElementById('auditHandle').value.trim();
-  if (!val) {
-    document.getElementById('auditHandle').style.borderBottom = '1px solid red';
+const AUDIT_ENDPOINT = 'https://api.brutemedia.xyz/audit';
+
+document.getElementById('auditBtn').addEventListener('click', async () => {
+  const input  = document.getElementById('auditHandle');
+  const btn    = document.getElementById('auditBtn');
+  const errEl  = document.getElementById('auditError');
+  const msgEl  = document.getElementById('successMsg');
+  const wrap   = document.querySelector('.audit-input-wrap');
+
+  const raw = input.value.trim();
+
+  // ── Reset previous error state
+  errEl.style.display = 'none';
+  errEl.textContent = '';
+  input.style.outline = '';
+
+  // ── Validation
+  if (!raw) {
+    errEl.textContent = 'Please enter your Instagram handle.';
+    errEl.style.display = 'block';
+    input.focus();
     return;
   }
-  const handle = val.startsWith('@') ? val : '@' + val;
-  document.querySelector('.audit-input-wrap').style.display = 'none';
-  const msg = document.getElementById('successMsg');
-  msg.style.display = 'block';
-  msg.textContent = `✦   Got it — we'll audit ${handle} and send feedback within 24 hours.`;
+  if (/\s/.test(raw)) {
+    errEl.textContent = 'Handle cannot contain spaces.';
+    errEl.style.display = 'block';
+    input.focus();
+    return;
+  }
+  if (/[\/\\]/.test(raw) || /https?:/i.test(raw)) {
+    errEl.textContent = 'Please enter just your handle, not a URL.';
+    errEl.style.display = 'block';
+    input.focus();
+    return;
+  }
+
+  const handle = raw.startsWith('@') ? raw : '@' + raw;
+
+  // ── Submitting state
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Submitting…';
+
+  try {
+    const res = await fetch(AUDIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: 'website', handle })
+    });
+
+    if (res.ok) {
+      wrap.style.display = 'none';
+      errEl.style.display = 'none';
+      msgEl.style.display = 'block';
+      msgEl.textContent = `✦   Got it — we'll audit ${handle} and send your feedback within 24 hours.`;
+    } else {
+      errEl.textContent = `Something went wrong (${res.status}). Please try again.`;
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.querySelector('span').textContent = 'Request Audit';
+    }
+  } catch (err) {
+    console.error('Audit form submission error:', err);
+    errEl.textContent = 'Network error — please check your connection and try again.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.querySelector('span').textContent = 'Request Audit';
+  }
 });
 
 // ── Parallax on hero bg

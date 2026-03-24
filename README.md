@@ -1,6 +1,37 @@
 # brutemedia
 Brute Media — Fitness Content Agency for Bodybuilders & Competitors
 
+## 🤖 Full Automation — One Command, Everything Runs
+
+The **`brute-media-automation`** agent is the master orchestrator that runs the entire Brute Media system end-to-end. Activate it with a single command and it handles every phase autonomously — client audit, 30-day content strategy, daily carousel generation, multi-platform publishing, performance analytics, A/B testing, and growth acceleration.
+
+```
+Activate Brute Media Automation.
+Mode: NEW_CLIENT
+Client: @[instagram_handle]
+Niche: [e.g., women's fat loss / men's bodybuilding / strength coaching]
+Follower count: [X]
+Monthly revenue goal: £[X]
+Platform: Instagram + TikTok
+Run Phase 0 → Phase 1 → begin Phase 2 daily loop.
+```
+
+### Automation Pipeline
+
+| Phase | Name | What Runs |
+|-------|------|-----------|
+| **0** | Intake & Audit | `coach-auditor` → account audit, brand assessment, baseline KPIs |
+| **1** | Content Strategy | `content-strategy` → 30-day calendar, hook batches, platform templates |
+| **2** | Daily Production | `marketing-carousel-growth-engine` → carousel generation + vision QA |
+| **3** | Multi-Platform Publish | Upload-Post API → Instagram + TikTok simultaneously |
+| **4** | Analytics | `support-analytics-reporter` → daily, weekly, and monthly KPI reports |
+| **5** | Optimise & Iterate | `marketing-growth-hacker` → A/B tests, pattern recognition, strategy refresh |
+| **6** | Growth Acceleration | `sales-outbound-strategist` + `paid-media-paid-social-strategist` |
+
+**Required environment variables**: `GEMINI_API_KEY`, `UPLOADPOST_TOKEN`, `UPLOADPOST_USER`
+
+---
+
 ## What the Agents Do for Brute Media
 
 This repository includes 172 specialist AI agents organised under the **NEXUS** orchestration framework. Below is a summary of what each agent category delivers for Brute Media clients.
